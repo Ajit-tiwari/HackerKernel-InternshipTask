@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title> Add Task</title>  
+          
+</head> 
+<body> 
+    <!-- form for adding task to user #task-2 -->
+    <form action="/userAddedIntoTable" method="POST">           
+        <label for="user">Select User</label>
+        <select class="list" name="list">
+            <!-- rendiring data from details provided by server  -->
+            <% if(detail!=null) {%>
+            <% detail.forEach(function(rec){ %>
+                <!-- adding name for every user in database into select options -->
+                <option value="<%= rec.name %>"><%= rec.name %></option>
+            <% }) %>
+            <% } %>
+        </select>
+        <br>
+        <label for="task">Task</label>
+        <input id="task-value" name="task" placeholder="Enter Task">
+        <br>
+        <label for="type">Task Type</label>
+        <select class="status" name="status">
+            <option value="Pending">Pending</option>
+            <option value="Done">Done</option>
+        </select>
+        <input type="submit">
+    </form>
+    <!-- export button to export the data from database to excel file and download it in client system -->
+    <button onclick="exportExcel()">Export</button>
+    <script>
+        function exportExcel()
+        {
+            window.open('/exportExcel');
+        }
+    </script>
+</body> 
+</html>     

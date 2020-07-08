@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title> Signup Form</title> 
+</head> 
+<body> 
+    <div class="form">
+        <h2>User Form</h2>
+        <form name="reg" id="reg" action="/done" method="POST">
+            <label for="Name">Name : </label>
+            <input placeholder="Enter Your Name" id="Name" name="Name" type="text" autocomplete="off"><br>
+            <label for="Email">Email : </label>
+            <input placeholder="Enter Your Email-ID" onchange="validateEmail()" id="Email" name="Email" type="text" autocomplete="off">
+            <label id="Email-verify" style="color:red; visibility:hidden">In valid</label>
+            <br>
+            <label for="Phone">Phone : </label>
+            <input placeholder="Enter Your Phone Number" onchange="validatePhone()" id="Phone" name="Phone" autocomplete="off" type="text">
+            <label id="phn-verify" style="color:red; visibility:hidden">In valid</label>
+            <br>
+            <input type="submit" >
+        </form>
+    </div>
+    <script>
+        function validatePhone(){               //validate phone using regular expression
+            var text=document.getElementById("Phone").value;
+            var regx=/^[6-9]\d{9}$/;
+            if(regx.test(text)){
+                document.getElementById("phn-verify").innerHTML="Valid";
+                document.getElementById("phn-verify").style.visibility="visible";
+                document.getElementById("phn-verify").style.color="green";
+            }else{
+                document.getElementById("phn-verify").innerHTML="In Valid";
+                document.getElementById("phn-verify").style.visibility="visible";
+                document.getElementById("phn-verify").style.color="red";
+            }
+        }
+        function validateEmail(){
+            var regex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  //validate email using regular expression
+            var mail=document.getElementById("Email").value;
+            if(regex.test(mail)){
+                document.getElementById("Email-verify").innerHTML="Valid";
+                document.getElementById("Email-verify").style.visibility="visible";
+                document.getElementById("Email-verify").style.color="green";
+            }else{
+                document.getElementById("Email-verify").innerHTML="In Valid";
+                document.getElementById("Email-verify").style.visibility="visible";
+                document.getElementById("Email-verify").style.color="red";
+            }
+        }
+    </script>
+</body> 
+</html>     
